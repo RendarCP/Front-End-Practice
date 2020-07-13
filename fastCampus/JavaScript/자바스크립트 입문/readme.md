@@ -52,6 +52,6 @@ let name = false; // 거짓
 * 값이 존재하지 않을경우 
 ```javascript
 let text = null; // 값이 아예 없음
-let name = undefined; // 아직 값이 정해지지않음 
+let name = undefined; // 아직 값이 정해지지않음 //
 ```
 
