@@ -55,3 +55,31 @@ let text = null; // 값이 아예 없음
 let name = undefined; // 아직 값이 정해지지않음 
 ```
 
+1-4 연산자
+-----------------------
+* 산술 연산자
+```javascript
+let a = 1 + 2;
+console.log(a); //-> 3
+a = 2 - 1; // -> 1
+a = 1 * 4; // -> 4
+a = 4 / 2; // -> 2
+```
+* 전위, 후위
+```javascript
+let a = 1;
+console.log(++a); //-> 2
+a = 1;
+console.log(a++); //-> 1
+```
+
+* 다른언어와 마찬가지 표현도 가능
+```javascript
+let a = 1;
+a += 3;
+a -= 3;
+a *= 3;
+a /= 3;
+console.log(a)
+```
+
