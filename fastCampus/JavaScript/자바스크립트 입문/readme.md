@@ -115,3 +115,68 @@ const equals2 = a == c; // -> true
 // a > b;
 // a >= b;
 ```
+
+1-7 조건문
+---------------------------
+* 조건이 참일때 실행된다 
+```javascript
+const a = 1;
+if(a === 1){
+  console.log("참입니다");
+}
+```
+
+* 스코프가 다르면 선언가능 
+```javascript
+const a = 1;// 밖 스코프의 a
+if(a + 1 === 2){
+  const a = 2; // if문 안의 a
+  console.log('if문 안의 a 값은 ' + a); // 2
+}
+console.log('if문 밖의 a 값은 ' + a); // 1
+```
+
+* if, else
+```javascript
+const a = 10;
+if( a > 15 ){
+  console.log('a가 15보다 큽니다');
+} else{
+  console.log('a가 15보다 크지 않습니다');// 이코드가 실행
+}
+```
+
+* if ,else if, else
+```javascript
+const a = 10;
+if( a === 15 ){ // 첫번째 조건판별
+  console.log('a가 15 입니다');
+}
+else if( a === 10 ){ // 두번째 조건 판별
+  console.log('a가 10 입니다');
+} 
+else{ // 마지막 조건 판별 
+  console.log('a가 15와 10도 아닙니다.');
+}
+```
+
+1-8 switch 
+----------------------
+* switch case 문
+```javascript
+const device = 'iphone' 
+
+switch(device) { // 
+  case 'iphone' :
+    console.log('아이폰');
+    break; // break가 없을시 다음 케이스 문 자동 실행
+  case 'ipad' :
+    console.log('아이패드');
+    break;
+  case 'galaxy' :
+    console.log('갤럭시');
+    break;
+  default: // 위 모든 케이스가 아닌경우 
+    console.log('아무것도 아님');
+}
+```
