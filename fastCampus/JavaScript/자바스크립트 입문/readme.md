@@ -180,3 +180,71 @@ switch(device) { //
     console.log('아무것도 아님');
 }
 ```
+
+1-9 함수
+------------------------
+* 특정 기능을 수행하는 것
+* input(파라미터)을 통하여 output(결과) 제공
+* 함수는 function이라는 키워드 사용
+```javascript
+function add(a,b){ // 파라미터가 여러개일경우()로 구분 
+  return a + b; // 결과값 반환은 return 
+}
+const sum = add(1,2);
+console.log(sum); //=> 3결과값 
+```
+* 함수 사용
+```javascript
+function hello(name){
+  console.log('hello '+ name+ '!');
+}
+hello('홍길동'); // 콘솔 결과창 hello 홍길동!
+```
+* 함수는 return 시 종료된다
+```javascript
+function hello(name){
+ return 'hello '+ name+ '!' // 여기서 함수 종료
+
+ console.log('test'); // 이코드부터 아래 코드는 동작 x 
+ return;// 동작 x 
+  
+}
+const test = hello('홍길동');
+console.log(test); // 콘솔 결과창 hello 홍길동!
+```
+
+
+1-10 함수- Template Literal
+----------------------------
+* ES6 = ECMAScript6 = ES2015
+* ` (백틱)문자를 사용하여 Template Literal 사용
+```javascript
+function hello(name){
+  console.log(`hello ${name}`);
+}
+hello('홍길동'); // 콘솔 결과창 hello 홍길동!
+```
+
+1-11 화살표 함수(es6)
+------------------------------
+* 화살표 함수 사용법 (=>)
+```javascript
+const add = (a,b) => {
+  return a + b;
+}
+const hello = (name) =>{
+  console.log(`hello ${name}`);
+}
+const sum = add(1,2);
+console.log(sum);
+hello('홍길동');
+```
+
+* 화살표함수 사용법 (짧은 코드)
+```javascript
+const add = (a,b) => a + b;
+const sum = add(1,2);
+console.log(sum);
+``` 
+
+* function과의 차이점은 this차이 
