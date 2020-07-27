@@ -248,3 +248,100 @@ console.log(sum);
 ``` 
 
 * function과의 차이점은 this차이 
+
+1-11 객체
+---------------------------
+* 하나의 이름에 여러개의 값들을 선언가능
+* 키 : 벨류 형태로 되어있음 ( key : value ) 
+```javascript
+const dog = {
+  name: '멍멍이', // 쉽표로 구분해줘야 된다 
+  age: 2,
+  cute: true,
+  sample: {
+    a: 1,
+    b: ,
+  }
+}
+console.log(dog); // 객체정보
+console.log(dog.name); // 멍멍이
+console.log(dog.age); // 2
+```
+
+* 키값에는 숫자가 들어가긴하지만 보통 문자열로 선언 
+* 문자열에는 공백이 있으면 안된다(선언하고 싶다면 따옴표(')로감싸줘야된다)
+```javascript
+const dog ={
+  key with space : 'test' // 동작 x
+  'key with space' : 'test' // 이렇게 써야된다
+}
+```
+
+* 함수와 같이 사용 
+```javascript
+const ironMan = {
+  name: '토니 스타크',
+  actor: '로버트 다우니 주니어',
+  alias: '아이언맨'
+}
+
+const captinAmerica = {
+  name: '스티븐 로저스',
+  actor: '크리스 에반스',
+  alias: '캡틴 아메리카'
+}
+
+function print(hero){ // hero파라미터를 받아서 
+  const text = `${hero.alias}(${hero.name}) 역학을 맡은 배우는 ${hero.actor} 입니다`
+  console.log(text); // 출력 
+}
+print(ironMan);
+print(captinAmerica);
+```
+
+* 객체 비구조화 할당 (객체 구조 분해)
+```javascript
+const ironMan = {
+  name: '토니 스타크',
+  actor: '로버트 다우니 주니어',
+  alias: '아이언맨'
+}
+
+const captinAmerica = {
+  name: '스티븐 로저스',
+  actor: '크리스 에반스',
+  alias: '캡틴 아메리카'
+}
+// 첫번째 방법
+function print(hero){ 
+  const { alias, name, actor } = hero;
+  const text = `${alias}(${name}) 역학을 맡은 배우는 ${actor} 입니다`
+  console.log(text);
+}
+// or 두번째 방법 
+function print({ alias, name, actor }){ 
+  const text = `${alias}(${name}) 역학을 맡은 배우는 ${actor} 입니다`
+  console.log(text);
+}
+print(ironMan);
+print(captinAmerica);
+```
+
+* 객체 안에 함수선언
+```javascript 
+const dog = {
+  name: '멍멍이',
+  sound: '멍멍!',
+  say: function say(){
+    console.log(this.sound); // 함수가 위치한 객체 자기 자신을 뜻함(this) === dog 
+  }, // or
+  say() {
+    console.log(this.sound);
+  }, // 아래 코드는 동작 x(화살표 함수)
+  say: () => {
+    console.log(this.sound); // -> this의 스코프가 달라짐 
+  }
+}
+
+dog.say(); 
+```
