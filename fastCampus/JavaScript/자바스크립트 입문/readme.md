@@ -345,3 +345,67 @@ const dog = {
 
 dog.say(); 
 ```
+
+* getter / setter 
+* getter함수
+```javascript
+const numbers = {
+  a: 1,
+  b: 2,
+  get sum() { //getter의 경우 get으로 선언 -> 어떤 값을 무조건 반환해야된다 
+    console.log('sum 함수가 실행됩니다!');
+    return this.a + this.b;
+  }
+}
+
+console.log(numbers.sum); // 3출력
+```
+
+* setter함수 
+```javascript
+const dog= {
+  _name: '멍멍이',
+  get name() {
+  set name(value){ //setter함수의경우 파라미터를 받아야된다 
+    console.log('이름이 바뀝니다 !' + value);
+    this._name = value;
+  }
+};
+
+console.log(dog._name);
+dog.name = '뭉뭉이';
+console.log(dog._name); // 이름이 뭉뭉이로 출력
+```
+
+* getter 와 setter 함수 활용
+```javascript
+const numbers = {
+  _a: 1,
+  _b: 2,
+  sum: 3,
+  calculate() {
+    console.log('calculate');
+    this.sum = this._a + this._b;
+  },
+  get a() {
+    return this._a;
+  },
+  get b() {
+    return this._b;
+  },
+  set a(value) {
+    this._a = value;
+    this.calculate();
+  }
+  set b(value){
+    this._b = value;
+    this.calculate();
+  }
+};
+
+console.log(numbers.sum);
+numbers.a = 5; 
+numbers.b = 7;
+numbers.a = 9;
+console.log(numbers.sum); // 결과값 16 a: 9, b: 7
+```
