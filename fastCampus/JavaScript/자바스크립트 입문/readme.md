@@ -675,7 +675,7 @@ const avg = numbers.reduce((accumulatore, current, index, array) => {
 console.log(avg); // 3
 ```
 
-* reduce 다른예 (활용)
+* reduce 다른예 (활용예)
 
 ```javascript
 const alphabets = ['a', 'a', 'a', 'b', 'c', 'c', 'd', 'e'];
