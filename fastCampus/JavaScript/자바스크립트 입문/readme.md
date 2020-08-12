@@ -480,5 +480,213 @@ superheroes.forEach((hero) => {
 })
 ```
 
+* map
+```javascript
+const array = [1,2,3,4,5,6,7,8];
+
+// for문을 쓸시
+const squared = [];
+for(let i =0; i< array.length; i++){
+  squared.push(array[i] * array[i]);
+}
+console.log(squared);
+
+// forEach를 쓸시
+array.forEach( n => {
+  squared.push(n * n);
+})
+
+// map 을 쓸시 
+
+const square = n => n * n ;
+const squared = array.map(square); 
+// or
+const squared = array.map(n => n * n);
+```
+
+* map 활용
+```javascript
+const items = [
+  {
+    id: 1,
+    text: 'hello'
+  },
+  {
+    id: 2,
+    text: 'bye'
+  }
+];
+
+const texts = items.map(item => item.text);
+console.log(texts);
+```
+
+* indexOf (배열의 몇번째인지) => 순수 배열일시 
+```javascript
+const superheroes = ['아이언맨','캡틴 아메리카', '토르','헐크' ];
+
+const index = superheroes.indexOf('아이언맨'); 
+console.oog(index); // -> 1 
+```
+
+* findindex (객체이거나 특정조건을 확인할시)
+```javascript
+const todos =[
+  {
+    id: 1,
+    text: '자바스크립트 입문',
+    done: true,
+  },
+  {
+    id: 2,
+    text: '함수 배우기',
+    done: true,
+  },
+  {
+    id: 3,
+    text: '객체와 배열 배우기',
+    done: true,
+  },
+  {
+    id: 4,
+    text: '배열 내장함수 배우기',
+    done: false,
+  }
+];
+
+const index = todos.findIndex(todo => todo.id === 3)//함수처럼 반환 
+const todo = todos.find(todo => todo.id === 3 ) // 객체 반환  => 첫번쨰 항목만 알려줌 
+console.log(index); // 2 
+```
+
+* filter (특정조건을 만족하는 원소들을 찾아 새로운 배열 생성)
+
+```javascript
+const todos =[
+  {
+    id: 1,
+    text: '자바스크립트 입문',
+    done: true,
+  },
+  {
+    id: 2,
+    text: '함수 배우기',
+    done: true,
+  },
+  {
+    id: 3,
+    text: '객체와 배열 배우기',
+    done: true,
+  },
+  {
+    id: 4,
+    text: '배열 내장함수 배우기',
+    done: false,
+  }
+];
+
+const tasksNotDone = todos.filter(todo => todo.done === false);
+console.log(taskNotDone); 
+```
+
+* splice (배열항목 제거) / slice (기존배열을 건드리지 않음)
+
+```javascript
+const numbers = [10, 20, 30, 40];
+const index = numbers.indexOf(30);
+const spliced = numbers.splice(index,1); // index부터 시작하여 1개를 지우겠다
+console.log(spliced); //30
+console.log(numbers); //[10,20,40];
 
 
+/// ----------------------
+
+// slice 
+const numbers = [10, 20, 30, 40];
+const sliced = numbers.slice(0,2);
+console.log(sliced);
+console.log(numbers);
+```
+
+* shift, pop, unshift, push
+
+```javascript
+//shift -> 기존 배열 수정 (배열의 앞원소를 제거한다)
+const numbers = [10, 20, 30, 40];
+const value = numbers.shift();
+console.log(value);
+console.log(numbers);//[20, 30, 40]
+
+//pop (배열의 뒷원소를 제거한다);
+const numbers = [10, 20, 30, 40];
+const value = numbers.pop();
+console.log(value);
+console.log(numbers);//[10, 20, 30]
+
+//unshift 
+const numbers = [10, 20, 30, 40];
+numbers,unshift(5); 
+console.log(numbers);//[5,10, 20, 30, 40]
+
+//push
+const numbers = [10, 20, 30, 40];
+numbers,push(50);
+console.log(numbers); //[10, 20, 30, 40, 50]
+```
+
+* concat (두 배열을 합치기) -> 기존의 배열을 수정하지 않음 
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const concated = arr1.concat(arr2);
+console.log(concated);// [1, 2, 3, 4, 5, 6];
+
+// es6 => spread 이용
+const concated = [...arr1 , ...arr2];
+console.log(concated);// [1, 2, 3, 4, 5, 6];
+```
+
+* join (하나의 문자열로)
+```javascript
+const array = [1, 2, 3, 4, 5];
+console.log(array.join()); // 1,2,3,4,5
+console.log(array.join(' '));// 1 2 3 4 5
+console.log(array.join(', ')); // 1, 2, 3, 4, 5 
+```
+
+* reduce 
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+//배열의 합
+const sum = numbers.reduce((accumulatore, current) => accumulator + current, 0);
+// accumulator : 누적값 ,current: 배열에서 가져온값 , 0: 초기값
+console.log(sum);
+
+// 배열의 평균
+const avg = numbers.reduce((accumulatore, current, index, array) => {
+  if( index === array.length -1){
+    return (accumulator + current) / array.length;
+  }
+  return accumulator + current;
+} ,0);
+// index => 배열의 index값 , array => 배열 자기 자신 
+console.log(avg);
+```
+
+* reduce 다른예 (활용)
+
+```javascript
+const alphabets = ['a', 'a', 'a', 'b', 'c', 'c', 'd', 'e'];
+const counts = alphabets.reudce((acc, current) => {
+  if(acc[current]){
+    acc[current] += 1;
+  } else{
+    acc[current] = 1;
+  }
+  return acc;
+}, {})
+
+console.log(counts);
+```
