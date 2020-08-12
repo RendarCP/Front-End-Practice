@@ -409,3 +409,76 @@ numbers.b = 7;
 numbers.a = 9;
 console.log(numbers.sum); // 결과값 16 a: 9, b: 7
 ```
+
+1-12 배열
+-------------------------------
+
+* [] 대괄호로 선언한다
+```javascript
+const array = [1, 2, 3 ,4, 5];
+console.log(array);
+```
+
+* 자바스크립트 배열은 어느것이든 들어간다 (똑같은 타입일 필요가 없다)
+```javascript
+const array = [1, 'array', {}]; // 숫자, 문자열, 객체 등등
+console.log(array);
+```
+
+* 배열의 첫번째는 0이다 
+```javascript
+const array = [1, 'array', {}];
+console.log(array[0]); // 1 출력
+```
+
+* 배열에 새로운 항목을 삽입 push
+```javascript
+const objects = [
+  { name: '멍멍이'},
+  { name: '야옹이}
+];
+
+objects.push({
+  name: '멍뭉이'
+});
+console.log(objects);
+```
+
+* 배열의 크기를 알려주는 length
+```javascript
+const objects = [
+  { name: '멍멍이'},
+  { name: '야옹이}
+];
+
+objects.push({
+  name: '멍뭉이'
+});
+console.log(objects.length); // 3출력 
+```
+
+1-13 배열 내장함수 
+--------------------------------------
+* forEach
+```javascript
+const superheroes = ['아이언맨','캡틴 아메리카', '토르','헐크' ];
+
+function print(hero){
+  console.log(hero);
+}
+
+superheroes.forEach(print);
+
+// 더간단하게
+superheroes.forEach(function(hero) {
+  console.log(hero); // 배열 출력
+})
+
+// 화살표함수
+superheroes.forEach((hero) => {
+  console.log(hero); // 배열 출력
+})
+```
+
+
+
