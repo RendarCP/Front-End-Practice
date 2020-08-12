@@ -662,7 +662,7 @@ const numbers = [1, 2, 3, 4, 5];
 //배열의 합
 const sum = numbers.reduce((accumulatore, current) => accumulator + current, 0);
 // accumulator : 누적값 ,current: 배열에서 가져온값 , 0: 초기값
-console.log(sum);
+console.log(sum); // 15
 
 // 배열의 평균
 const avg = numbers.reduce((accumulatore, current, index, array) => {
@@ -672,7 +672,7 @@ const avg = numbers.reduce((accumulatore, current, index, array) => {
   return accumulator + current;
 } ,0);
 // index => 배열의 index값 , array => 배열 자기 자신 
-console.log(avg);
+console.log(avg); // 3
 ```
 
 * reduce 다른예 (활용)
@@ -688,5 +688,5 @@ const counts = alphabets.reudce((acc, current) => {
   return acc;
 }, {})
 
-console.log(counts);
+console.log(counts); // a: 3, b: 1, c: 2, d: 1, e: 1
 ```
