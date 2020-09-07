@@ -5,6 +5,8 @@ React 입문
 ------------------
 1. 모든 내용은 패스트캠퍼스(이하 패캠)강의 기준으로 작성한다
 2. 현재 강의의 내용은 <https://react.vlpt.us/> 참조 가능
+3. 함수형 컴포넌트를 기준으로 작성한다.
+4. 정리 환경을 위하여 <https://codesandbox.io/s/blazing-firefly-pe0th?file=/src/App.js> 참조 가능 
 
 2 React란? (작업환경 구성)
 ---------------------------
@@ -27,4 +29,29 @@ React 입문
 
 3 first React Component
 ---------------------------
-1. 
+1. Hello.js(컴포넌트)
+```javascript
+import React from 'react';
+
+function Hello() {
+  return <div>안녕하세요</div>
+}
+
+export default Hello;
+```
+
+2. App.js(실행파일)
+```javascript
+import React from "react";
+import Hello from './Hello.js';
+
+function App() {
+  return (
+    <div>
+      <Hello /> {/* 컴포넌트 */}
+    </div>
+  );
+}
+
+export default App;
+```
