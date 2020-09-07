@@ -55,7 +55,4 @@ function App() {
 
 export default App;
 ```
-<div>
- 실행화면
- <img width=500 src="https://user-images.githubusercontent.com/32770277/92359268-eff33980-f125-11ea-8464-b2aa10194637.png"/>
-</div>
+<img width=500 src="https://user-images.githubusercontent.com/32770277/92359268-eff33980-f125-11ea-8464-b2aa10194637.png"/>
