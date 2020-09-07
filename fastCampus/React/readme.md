@@ -25,7 +25,6 @@ React 입문
   * 혹은 codesandbox를 이용
 
 
-3. first React Component
+3 first React Component
 ---------------------------
-
 1. 
