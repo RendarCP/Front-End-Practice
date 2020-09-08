@@ -159,3 +159,143 @@ function App() {
 
 export default App;
 ```
+
+5 props 
+-------------------------
+1. props는 properties의 줄임말
+  * 컴포넌트에 어떠한 값을 전달할 경우 사용 
+
+2. props 사용법
+  * 기본 사용법
+  App.js
+  ```javascript
+  import React from "react";
+  import Hello from "./Hello.js";
+
+  function App() {
+    return (
+      <div>
+        <Hello name="react" />
+        {/* name이라는 props를 Hello 컴포넌트에 전달 */}
+      </div>
+    );
+  }
+
+  export default App;
+  ```
+  Hello.js
+  ```javascript
+  import React from "react";
+  
+  // -> props는 객체형태로 전달 
+  function Hello(props) {
+    return <div>안녕하세요 {props.name}</div>;
+  }
+
+  export default Hello;
+  ```
+
+  * 비구조화 할당
+  App.js
+  ```javascript
+  import React from "react";
+  import Hello from "./Hello.js";
+
+  function App() {
+    return (
+      <div>
+        <Hello name="react" color="red" />
+      </div>
+    );
+  }
+
+  export default App;
+  ```
+  Hello.js(컴포넌트)
+  ```javascript
+  import React from "react";
+  
+  //-> 함수의 파라미터로 비구조화 할당을 통하여 코드를 간결하게 작성
+  function Hello({color, name}) { 
+    return <div style={{ color }}>안녕하세요 {name}</div>;
+  }
+
+  export default Hello;
+  ```
+
+3. defaultProps 설정 (기본값) 
+  * props를 지정하지 않았을시 기본적으로 사용할 값을 설정 
+
+Hello.js
+```javascript
+import React from "react";
+
+function Hello({color, name}) { 
+  return <div style={{ color }}>안녕하세요 {name}</div>;
+}
+
+Hello.defaultProps = {
+  name: '이름없음'
+}
+
+export default Hello;
+```
+App.js
+```javascript
+import React from "react";
+import Hello from "./Hello.js";
+
+function App() {
+  return (
+    <div>
+      <Hello name="react" color="red" />
+      <Hello color="blue" />
+    </div>
+  );
+}
+
+export default App;
+```
+<img width=500 src="https://user-images.githubusercontent.com/32770277/92498277-5f0b8380-f235-11ea-9a8e-279669facd88.png"/>
+
+
+4. props.children 
+  * 컴포넌트 태그 사이에 넣은 값을 조회 할시 사용 
+
+Wrapper.js
+```javascript
+import React from 'react';
+
+function Wrapper({ children}) {
+  const style ={ 
+    border: '2px solid black',
+    padding: '16px',
+  };
+  return (
+    <div style={style}>
+      {children}
+    </div>
+  )
+}
+
+export default Wrapper;
+```
+
+App.js
+```javascript
+import React from "react";
+import Hello from "./Hello.js";
+import Wrapper from "./Wrapper.js";
+
+function App() {
+  return (
+    <Wrapper>
+      <Hello name="react" color="red" />
+      <Hello color="blue" />
+    </Wrapper>
+  );
+}
+
+export default App;
+```
+
