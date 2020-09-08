@@ -70,7 +70,7 @@ export default App;
 <div> 
 <!-- 윗부분 오류 닫는태그가 없음 -->
 ```
-  * <input />, <br /> 태그의경우 self closing tag 이용
+  * input, br 태그의경우 self closing tag 이용
 
 3. 두개이상의 태그의 경우 하나의 태그로 감싸주어야 된다
 ```html
