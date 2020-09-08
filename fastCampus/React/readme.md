@@ -56,3 +56,106 @@ function App() {
 export default App;
 ```
 <img width=500 src="https://user-images.githubusercontent.com/32770277/92359268-eff33980-f125-11ea-8464-b2aa10194637.png"/>
+
+4 JSX 규칙
+-----------------------------
+1. Babel을 통하여 html -> javascript로 변환 
+  * <https://babeljs.io/> 에서 확인가능 
+
+2. 태그를 열었다면 무조건 닫아줘야 된다
+```html
+<div>
+  안녕하세요 
+</div>
+<div> 
+<!-- 윗부분 오류 닫는태그가 없음 -->
+```
+  * <input />, <br /> 태그의경우 self closing tag 이용
+
+3. 두개이상의 태그의 경우 하나의 태그로 감싸주어야 된다
+```html
+<!-- 오류 발생 -->
+<div>안녕하세요</div>
+<Hello />
+```
+```html
+<!-- 오류 발생 -->
+<div>
+  <div>안녕하세요</div>
+  <Hello />
+</div>
+```
+  * 혹은 fragment를 사용 <></>
+  ```html
+  <>
+    <div>안녕하세요</div>
+    <Hello />
+  </>
+  ```
+
+4. javascript 값을 사용하고 싶을때는 {} 중괄호 사용 
+```javascript
+import React from 'react';
+import Hello from './Hello';
+
+function App() {
+  const name = 'react';
+  return (
+    <>
+      <Hello />
+      <div>{name}</div>
+    </>
+  );
+}
+
+export default App;
+```
+
+5. style작성시 기존과 다르게 객체로 전달
+```javascript
+import React from 'react';
+import Hello from './Hello';
+
+function App() {
+  const name = 'react';
+  const style = {
+    backgroundColor: 'black', // background-color 등 - 구분은 카멜케이스 사용
+    color: 'aqua',
+    fontSize: 24, 
+    padding: '1rem' 
+  }
+
+  return (
+    <>
+      <Hello />
+      <div style={style}>{name}</div>
+      <div style={{ backgroundColor: 'black', color: 'aqua', fontSize: 24, padding: '1rem'}}>{name}</div> 
+    </>
+  );
+}
+
+export default App;
+```
+  * CSS class의경우 class= 가 아닌 className= 으로 설정 
+  ```html
+  <div className="test"></div>
+  ```
+
+5. JSX 내부 주석의 경우 {/* 주석내용 */} 형식으로 작성
+```javascript
+import React from 'react';
+import Hello from './Hello';
+
+function App() {
+  return (
+    <>
+      {/* 주석은 화면에 보이지 않습니다 */}
+      /* 중괄호로 감싸지 않으면 화면에 보입니다 */
+      <Hello 
+      />
+    </>
+  );
+}
+
+export default App;
+```
