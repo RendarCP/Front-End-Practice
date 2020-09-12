@@ -196,6 +196,7 @@ export default App;
   ```
 
   * 비구조화 할당
+
   App.js
   ```javascript
   import React from "react";
@@ -299,3 +300,133 @@ function App() {
 export default App;
 ```
 
+6 조건부 렌더링
+------------------------------
+1. 삼항 연산자를 이용하여 렌더링 
+App.js 
+```javascript
+import React from "react";
+import Hello from "./Hello.js";
+import Wrapper from "./Wrapper.js";
+
+function App() {
+  return (
+    <Wrapper>
+      <Hello name="react" color="red" isSpecial={true} />
+      <Hello color="blue" />
+    </Wrapper>
+  );
+}
+
+export default App;
+```
+
+Hello.js
+```javascript
+import React from "react";
+
+function Hello({ color, name, isSpecial }) {
+  return (
+    <div style={{ color }}>
+      {isSpecial ? <b>*</b> : null} {/* 삼항 연산자 사용 */}
+      안녕하세요 {name}
+    </div>
+  );
+}
+
+Hello.defaultProps = {
+  name: "이름없음"
+};
+
+export default Hello;
+```
+
+2. 결과값이 true일시 생략가능 
+
+App.js
+
+```javascript
+import React from "react";
+import Hello from "./Hello.js";
+import Wrapper from "./Wrapper.js";
+
+function App() {
+  return (
+    <Wrapper>
+      <Hello name="react" color="red" isSpecial />
+      <Hello color="blue" />
+    </Wrapper>
+  );
+}
+
+export default App;
+```
+
+7 useState로 컴포넌트 상태 관리 
+---------------------------------
+1. useState 사용 
+
+Counter.js 
+
+```javascript
+import React, { useState } from 'react';  // useState함수 가져오기 
+
+function Counter() {
+  const [number, setNumber] = useState(0);
+  // 첫번쨰 원소 현재상태, Setter함수 마지막 useState(기본값)
+  
+  // const numberState = useState(0);
+  // const number = numberState[0];
+  // const setNumber = numberState[1];
+  // 위와 같이 해야되지만 배열 비구조화 할당을 통하여 원소 추출
+  
+  const onIncrease = () => {
+    setNumber(number + 1);
+    //setNumber를 통하여 업데이트 
+  }
+
+  const onDecrease = () => {
+    setNumber(number - 1);
+    //setNumber를 통하여 업데이트 
+  }
+
+  return (
+    <div>
+      <h1>{number}</h1>
+      <button onClick={onIncrease}>+1</button>
+      <button onClick={onDecrease}>-1</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+2. 함수형 업데이트(업데이트 함수)
+
+Counter.js 
+
+```javascript
+
+function Counter() {
+  const [number, setNumber] = useState(0);
+  
+  const onIncrease = () => {
+    setNumber(prevNumber => prevNumber + 1);
+  }
+
+  const onDecrease = () => {
+    setNumber(prevNumber => prevNumber - 1);
+  }
+
+  return (
+    <div>
+      <h1>{number}</h1>
+      <button onClick={onIncrease}>+1</button>
+      <button onClick={onDecrease}>-1</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
