@@ -430,3 +430,157 @@ function Counter() {
 
 export default Counter;
 ```
+
+8 input 상태 관리
+--------------------------
+1. 단일 input 관리
+
+InputSample.js
+
+```javascript
+import React, { useState } from "react";
+
+function InputSample() {
+  const [text, setText] = useState("");
+  // input 상태 관리
+
+  const onChange = (e) => {
+    setText(e.target.value);
+    // text의 상태 변화 
+  };
+
+  const onReset = () => {
+    setText("");
+    // text 초기화
+  };
+  return (
+    <div>
+      <input onChange={onChange} value={text} />
+      <button onClick={onReset}>초기화</button>
+      <div>
+        <b>값 : {text}</b>
+      </div>
+    </div>
+  );
+}
+
+export default InputSample;
+
+```
+
+2. 다중 input상태 관리
+
+InputSample.js 
+
+```javascript
+import React, { useState } from "react";
+
+function InputSample() {
+  const [texts, setTexts] = useState({
+    name: "",
+    nickname: ""
+    // 객체 상태로 state관리
+  });
+
+  const { name, nickname } = texts;
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setTexts({
+      ...texts, // react의경우 불변성을 지켜야 상태변경가능(존 객체를 가져오기 spread 문법)
+      [name]: value
+    });
+  };
+
+  const onReset = () => {
+    setTexts({
+      name: "",
+      nickname: ""
+    });
+  };
+  return (
+    <div>
+      <input 
+        placeholder="이름" 
+        name="name" 
+        onChange={onChange} 
+        value={name} 
+      />
+      <input
+        placeholder="닉네임"
+        name="nickname"
+        onChange={onChange}
+        value={nickname}
+      />
+      <button onClick={onReset}>초기화</button>
+      <div>
+        <b>값 :</b>
+        {name} ({nickname})
+      </div>
+    </div>
+  );
+}
+
+export default InputSample;
+
+```
+
+9 useRef로 DOM 직접 관리 
+----------------------------
+
+InputSample.js
+
+```javascript
+import React, { useState, useRef } from "react";
+
+function InputSample() {
+  const [texts, setTexts] = useState({
+    name: "",
+    nickname: ""
+  });
+
+  const nameInput = useRef(); // useRef객체 생성
+  const { name, nickname } = texts;
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setTexts({
+      ...texts,
+      [name]: value
+    });
+  };
+
+  const onReset = () => {
+    setTexts({
+      name: "",
+      nickname: ""
+    });
+    nameInput.current.focus();// 초기화 버튼 클릭시 nameInput에 포커스
+  };
+  return (
+    <div>
+      <input
+        placeholder="이름"
+        name="name"
+        onChange={onChange}
+        value={name}
+        ref={nameInput} // ref 객체 가져오기 
+      />
+      <input
+        placeholder="닉네임"
+        name="nickname"
+        onChange={onChange}
+        value={nickname}
+      />
+      <button onClick={onReset}>초기화</button>
+      <div>
+        <b>값 :</b>
+        {name} ({nickname})
+      </div>
+    </div>
+  );
+}
+
+export default InputSample;
+
+```
